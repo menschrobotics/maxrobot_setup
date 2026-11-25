@@ -2,8 +2,6 @@
 
 **Installation, system configuration, software architecture, and development environment for the MAX open-source robotics platform.**
 
-The `maxrobot_setup` repository is part of the MAX open-source robotics ecosystem developed by **Mensch Robotics Private Limited**.
-
 This repository provides an overview of the software technologies, installation procedures, and system configurations used in MAX. It serves as a reference for preparing the computing environment, installing required dependencies, and setting up the software components needed to run and develop the MAX Robot.
 
 MAX is designed as an extensible platform, allowing developers, students, and researchers to explore its software, customise existing functionalities, integrate new technologies, and develop additional capabilities.
@@ -50,6 +48,8 @@ The setup process includes:
 - **Initial Configuration:** Configuring hostname, username, password, and network connectivity.
 - **Remote Access:** Setting up SSH for remote system access.
 - **System Preparation:** Updating system packages and installing essential utilities.
+
+**Advanced Computing Option:** For applications requiring higher computing performance and advanced AI processing capabilities, developers can also use the **NVIDIA Jetson Orin Nano** as an alternative computing platform.
 
 Platform-specific installation instructions will be provided as separate guides.
 
