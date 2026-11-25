@@ -2,7 +2,7 @@
 
 **Installation, system configuration, software architecture, and development environment for the MAX open-source robotics platform.**
 
-This repository provides an overview of the software technologies, installation procedures, and system configurations used in MAX. It serves as a reference for preparing the computing environment, installing required dependencies, and setting up the software components needed to run and develop the MAX Robot.
+This guide explains how to prepare a computing environment, configure the operating system, install software dependencies, and set up the development environment required to work with MAX.
 
 MAX is designed as an extensible platform, allowing developers, students, and researchers to explore its software, customise existing functionalities, integrate new technologies, and develop additional capabilities.
 
@@ -11,13 +11,17 @@ MAX is designed as an extensible platform, allowing developers, students, and re
 ## Table of Contents
 
 - [Overview](#overview)
+- [System Requirements](#system-requirements)
 - [Raspberry Pi Setup](#raspberry-pi-setup)
+- [Jetson Orin Nano Setup](#jetson-orin-nano-setup)
 - [Software Architecture](#software-architecture)
 - [Technology Stack](#technology-stack)
-- [Core Software Components](#core-software-components)
-- [Software Installation and Configuration](#software-installation-and-configuration)
+- [Software Installation](#software-installation)
+- [Software Configuration](#software-configuration)
+- [Running the Application](#running-the-application)
 - [Development Environment](#development-environment)
 - [Customisation and Further Development](#customisation-and-further-development)
+- [Troubleshooting](#troubleshooting)
 - [Contributing](#contributing)
 - [License](#license)
 - [About MAX](#about-max)
@@ -28,7 +32,7 @@ The MAX software environment brings together AI technologies, voice processing, 
 
 The software architecture combines a Python-based backend with a web-based frontend to support interaction between users and the robot.
 
-This repository focuses on:
+This repository provides guidance for:
 
 - Computing platform preparation and operating system installation.
 - Software architecture and technologies.
@@ -37,21 +41,109 @@ This repository focuses on:
 - Development environment preparation.
 - Software customisation and extension.
 
+## System Requirements
+
+MAX can be developed and configured using supported computing platforms.
+
+| Component | Requirement |
+|---|---|
+| Standard computing option | Compatible Raspberry Pi |
+| Advanced computing option | NVIDIA Jetson Orin Nano |
+| Microcontroller | Arduino Mega 2560 |
+| Network | Wi-Fi or Ethernet |
+| Storage | Compatible SD card or SSD |
+| Development tools | Git, Python, and code editor |
+
+**Note:** The required computing resources depend on the software features and applications being used. Check the compatibility of the selected operating system and software dependencies with your computing platform.
+
 ## Raspberry Pi Setup
 
 This section covers the preparation and initial configuration of the Raspberry Pi computing environment.
 
+### 1. Required Items
+
+- Raspberry Pi board.
+- Compatible microSD card.
+- Card reader.
+- Power supply suitable for the Raspberry Pi model.
+- Computer for preparing the operating system.
+- Network connection.
+
+### 2. Install Raspberry Pi Imager
+
+1. Visit the official [Raspberry Pi Software page](https://www.raspberrypi.com/software/).
+2. Download Raspberry Pi Imager for your computer's operating system.
+3. Install and open Raspberry Pi Imager.
+4. Insert the microSD card into your computer.
+
+### 3. Flash the Operating System
+
+1. Open Raspberry Pi Imager.
+2. Select **Choose Device** and select your Raspberry Pi model.
+3. Select **Choose OS** and select a compatible 64-bit operating system.
+4. Select **Choose Storage** and choose your microSD card.
+5. Open the OS customisation settings, if available.
+6. Configure:
+   - Hostname.
+   - Username and password.
+   - Wi-Fi credentials.
+   - Wireless LAN country.
+   - SSH access.
+7. Review the settings and write the operating system to the microSD card.
+
+<text color="secondary" size="xs">Use an operating system version confirmed to be compatible with the selected Raspberry Pi model and MAX software dependencies.</text>
+
+### 4. First Boot and System Configuration
+
+1. Insert the prepared microSD card into the Raspberry Pi.
+2. Connect the power supply.
+3. Allow the operating system to complete its first boot.
+4. Connect to the configured network.
+5. Access the device locally or through SSH.
+
+To connect through SSH:
+
+```bash
+ssh username@hostname.local
+```
+
+Replace `username` and `hostname` with the values configured during installation.
+
+### 5. Update the System
+
+Open the terminal and execute:
+
+```bash
+sudo apt update
+sudo apt upgrade -y
+```
+
+Install essential development utilities:
+
+```bash
+sudo apt install -y git python3 python3-pip python3-venv
+```
+
+The Raspberry Pi environment is now prepared for the software setup.
+
+## Jetson Orin Nano Setup
+
+**Advanced Computing Option**
+
+For applications requiring greater computing performance, GPU acceleration, and advanced AI processing capabilities, developers can also use the **NVIDIA Jetson Orin Nano** as an alternative computing platform.
+
 The setup process includes:
 
-- **Raspberry Pi Imager:** Using Raspberry Pi Imager to select and flash an operating system image onto an SD card.
-- **Operating System Installation:** Installing the selected Raspberry Pi operating system.
-- **Initial Configuration:** Configuring hostname, username, password, and network connectivity.
-- **Remote Access:** Setting up SSH for remote system access.
-- **System Preparation:** Updating system packages and installing essential utilities.
+1. Preparing the Jetson Orin Nano development kit.
+2. Installing a compatible NVIDIA JetPack software environment.
+3. Configuring network connectivity and remote access.
+4. Updating system packages.
+5. Installing the required development tools and software dependencies.
+6. Configuring the MAX software environment.
 
-**Advanced Computing Option:** For applications requiring higher computing performance and advanced AI processing capabilities, developers can also use the **NVIDIA Jetson Orin Nano** as an alternative computing platform.
+Refer to the official [NVIDIA Jetson documentation](https://developer.nvidia.com/embedded/learn/get-started-jetson-orin-nano-devkit) for the appropriate installation procedure.
 
-Platform-specific installation instructions will be provided as separate guides.
+The software configuration may vary depending on the selected computing platform.
 
 ## Software Architecture
 
@@ -87,46 +179,104 @@ The following technologies form part of the MAX software environment.
 | Hardware Communication | PySerial and Arduino |
 | Containerisation | Docker |
 
-## Core Software Components
+## Software Installation
 
-### AI Interaction
+This section describes the general process for preparing the Python development environment.
 
-Integrates AI models and language-processing frameworks to understand user queries and generate conversational responses.
+### 1. Install Required Packages
 
-### Voice Processing
+Make sure Python and Git are installed:
 
-Supports voice input, speech recognition, and audio response generation to enable voice-based interaction with the robot.
+```bash
+python3 --version
+git --version
+```
 
-### Web Interface
+If Python is not installed, refer to the installation instructions for your selected operating system.
 
-Provides a browser-based interface for interacting with MAX and accessing its software functionalities.
+### 2. Obtain the MAX Software Source Code
 
-### Real-Time Communication
+Obtain the MAX application source repository from the project maintainers.
 
-Uses WebSocket communication to exchange information between the frontend and backend.
+The central MAX ecosystem repository provides project information and links to supporting repositories. It does not itself contain the complete application source code.
 
-### Knowledge Integration
+### 3. Create a Python Virtual Environment
 
-Uses document retrieval and Retrieval-Augmented Generation (RAG) to provide information-based responses using available knowledge sources.
+Navigate to the application source directory:
 
-### Hardware Integration
+```bash
+cd path/to/max-software
+```
 
-Connects the software environment with Arduino-based hardware through serial communication, enabling software components to interact with robot hardware.
+Create a virtual environment:
 
-## Software Installation and Configuration
+```bash
+python3 -m venv venv
+```
 
-This section covers the preparation of the software environment required to run MAX.
+Activate it:
 
-It includes:
+**Linux / Raspberry Pi / Jetson:**
 
-- Python environment setup.
-- Installation of required packages and dependencies.
-- Backend and frontend configuration.
-- API and external service configuration.
-- Environment variables and credentials.
-- Docker-based application setup.
+```bash
+source venv/bin/activate
+```
 
-Installation commands and configuration instructions will be maintained in dedicated guides.
+### 4. Install Software Dependencies
+
+If the application source repository provides a `requirements.txt` file, install its dependencies:
+
+```bash
+pip install --upgrade pip
+pip install -r requirements.txt
+```
+
+If dependencies are maintained through another package manager or installation file, follow the instructions provided by that repository.
+
+### 5. Install Additional System Dependencies
+
+Some software components may require system-level packages, audio libraries, or hardware communication utilities.
+
+Install these according to the application requirements and the selected operating system.
+
+## Software Configuration
+
+After installing the dependencies, configure the software components.
+
+The configuration process may include:
+
+- Backend application settings.
+- Frontend configuration.
+- AI service credentials and API keys.
+- Speech recognition and speech generation settings.
+- WebSocket communication settings.
+- Serial communication settings for Arduino.
+- Hardware and device configuration.
+
+### Environment Variables
+
+If the application provides an example environment file, create a working copy:
+
+```bash
+cp .env.example .env
+```
+
+Update the required configuration values in `.env` according to the application's documentation.
+
+**Important:** Keep API keys, passwords, and other credentials private. Do not commit `.env` files or secret credentials to GitHub.
+
+## Running the Application
+
+Once the dependencies and configuration are ready:
+
+1. Activate the Python virtual environment.
+2. Verify that the required services and hardware connections are available.
+3. Follow the application repository's instructions to start the backend.
+4. Start the frontend using its documented procedure, if it runs separately.
+5. Open the configured web interface.
+6. Verify communication between the application and the robot hardware.
+
+The exact startup commands depend on the MAX application source repository and its configuration.
 
 ## Development Environment
 
@@ -161,6 +311,19 @@ The software architecture provides opportunities to:
 Developers are encouraged to experiment with the existing implementation, introduce improvements, and contribute new capabilities to the MAX ecosystem.
 
 The goal is to provide a flexible software foundation for learning, experimentation, customisation, and further robotics development.
+
+## Troubleshooting
+
+| Issue | Suggested Check |
+|---|---|
+| Raspberry Pi does not boot | Check the OS image, microSD card, and power supply |
+| SSH connection fails | Verify network connectivity, hostname, and SSH configuration |
+| Python package installation fails | Check Python version, virtual environment, and package compatibility |
+| Application does not start | Check dependencies, configuration files, and application logs |
+| Arduino is not detected | Check USB connection, serial device permissions, and port configuration |
+| API connection fails | Verify network connectivity and API credentials |
+
+For unresolved issues, provide the operating system, computing platform, error message, and relevant logs when reporting a problem.
 
 ## Contributing
 
