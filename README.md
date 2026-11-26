@@ -2,9 +2,9 @@
 
 **Installation, system configuration, software architecture, and development environment for the MAX open-source robotics platform.**
 
-This guide explains how to prepare a computing environment, configure the operating system, install software dependencies, and set up the development environment required to work with MAX.
+This repository provides documentation for preparing the computing environment, configuring the operating system, understanding the software architecture, and setting up the development environment for MAX.
 
-MAX is designed as an extensible platform, allowing developers, students, and researchers to explore its software, customise existing functionalities, integrate new technologies, and develop additional capabilities.
+MAX is designed as an extensible robotics platform that allows developers, students, and researchers to explore its software, customise existing functionalities, integrate new technologies, and develop additional capabilities.
 
 ---
 
@@ -26,24 +26,27 @@ MAX is designed as an extensible platform, allowing developers, students, and re
 - [License](#license)
 - [About MAX](#about-max)
 
+---
+
 ## Overview
 
-The MAX software environment brings together AI technologies, voice processing, web-based interaction, real-time communication, and hardware integration.
+The MAX software environment integrates artificial intelligence, voice processing, web-based interaction, real-time communication, and hardware control.
 
-The software architecture combines a Python-based backend with a web-based frontend to support interaction between users and the robot.
+Its architecture combines a Python-based backend with a web-based frontend to support communication between users and the robot.
 
-This repository provides guidance for:
+This repository covers:
 
-- Computing platform preparation and operating system installation.
-- Software architecture and technologies.
-- Required software packages and dependencies.
-- Backend and frontend configuration.
+- Computing platform preparation.
+- Operating system installation and configuration.
+- Software architecture and technology stack.
 - Development environment preparation.
+- General software installation and configuration.
+- Application execution and development.
 - Software customisation and extension.
 
 ## System Requirements
 
-MAX can be developed and configured using supported computing platforms.
+MAX supports different computing platforms depending on application requirements and available computing resources.
 
 | Component | Requirement |
 |---|---|
@@ -51,21 +54,28 @@ MAX can be developed and configured using supported computing platforms.
 | Advanced computing option | NVIDIA Jetson Orin Nano |
 | Microcontroller | Arduino Mega 2560 |
 | Network | Wi-Fi or Ethernet |
-| Storage | Compatible SD card or SSD |
+| Storage | Compatible microSD card or SSD |
 | Development tools | Git, Python, and code editor |
 
-**Note:** The required computing resources depend on the software features and applications being used. Check the compatibility of the selected operating system and software dependencies with your computing platform.
+### Computing Platform Options
+
+- **Raspberry Pi:** A standard computing option for running supported MAX software functionalities.
+- **NVIDIA Jetson Orin Nano:** An advanced computing option for applications requiring higher processing performance and GPU-accelerated AI capabilities.
+
+These platforms are alternative computing options. Developers can select a suitable platform based on their project requirements and adapt the software to other compatible computing hardware.
+
+**Note:** Computing requirements may vary depending on the software features, applications, and hardware configuration. Verify operating system and dependency compatibility before installation.
 
 ## Raspberry Pi Setup
 
-This section covers the preparation and initial configuration of the Raspberry Pi computing environment.
+This section explains how to prepare and configure a Raspberry Pi for the MAX software environment.
 
 ### 1. Required Items
 
 - Raspberry Pi board.
 - Compatible microSD card.
 - Card reader.
-- Power supply suitable for the Raspberry Pi model.
+- Suitable power supply.
 - Computer for preparing the operating system.
 - Network connection.
 
@@ -80,18 +90,18 @@ This section covers the preparation and initial configuration of the Raspberry P
 
 1. Open Raspberry Pi Imager.
 2. Select **Choose Device** and select your Raspberry Pi model.
-3. Select **Choose OS** and select a compatible 64-bit operating system.
-4. Select **Choose Storage** and choose your microSD card.
+3. Select **Choose OS** and choose a compatible 64-bit operating system.
+4. Select **Choose Storage** and select your microSD card.
 5. Open the OS customisation settings, if available.
-6. Configure:
+6. Configure the following:
    - Hostname.
    - Username and password.
    - Wi-Fi credentials.
    - Wireless LAN country.
    - SSH access.
-7. Review the settings and write the operating system to the microSD card.
+7. Review the configuration and write the operating system to the microSD card.
 
-<text color="secondary" size="xs">Use an operating system version confirmed to be compatible with the selected Raspberry Pi model and MAX software dependencies.</text>
+Use an operating system version compatible with the selected Raspberry Pi model and MAX software dependencies.
 
 ### 4. First Boot and System Configuration
 
@@ -124,43 +134,45 @@ Install essential development utilities:
 sudo apt install -y git python3 python3-pip python3-venv
 ```
 
-The Raspberry Pi environment is now prepared for the software setup.
+The Raspberry Pi environment is now prepared for software development and configuration.
 
 ## Jetson Orin Nano Setup
 
 **Advanced Computing Option**
 
-For applications requiring greater computing performance, GPU acceleration, and advanced AI processing capabilities, developers can also use the **NVIDIA Jetson Orin Nano** as an alternative computing platform.
+The NVIDIA Jetson Orin Nano can be used as an alternative computing platform for MAX applications requiring greater processing performance, GPU acceleration, and advanced AI capabilities.
 
-The setup process includes:
+The setup process generally includes:
 
 1. Preparing the Jetson Orin Nano development kit.
-2. Installing a compatible NVIDIA JetPack software environment.
+2. Installing a compatible NVIDIA JetPack environment.
 3. Configuring network connectivity and remote access.
 4. Updating system packages.
-5. Installing the required development tools and software dependencies.
-6. Configuring the MAX software environment.
+5. Installing required development tools.
+6. Preparing the MAX software environment.
 
-Refer to the official [NVIDIA Jetson documentation](https://developer.nvidia.com/embedded/learn/get-started-jetson-orin-nano-devkit) for the appropriate installation procedure.
+Refer to the official [NVIDIA Jetson documentation](https://developer.nvidia.com/embedded/learn/get-started-jetson-orin-nano-devkit) for installation instructions.
 
-The software configuration may vary depending on the selected computing platform.
+Software configuration may vary depending on the selected JetPack version and application requirements.
 
 ## Software Architecture
 
-MAX uses a modular software architecture that integrates AI processing, voice interaction, web-based interfaces, and robot hardware control.
+MAX follows a modular software architecture that connects AI processing, voice interaction, user interfaces, and robot hardware.
 
-The architecture consists of:
+The major software components include:
 
 - **Frontend:** Provides the web-based interface for user interaction.
-- **Backend:** Handles application logic, request processing, and coordination between software components.
-- **AI Integration:** Processes user queries and generates intelligent responses.
+- **Backend:** Manages application logic, request processing, and communication between software components.
+- **AI Integration:** Handles AI model integration, query processing, and response generation.
 - **Voice Processing:** Supports speech recognition and audio response generation.
 - **Real-Time Communication:** Enables data exchange between the frontend and backend.
 - **Hardware Integration:** Connects software operations with the robot's control hardware.
 
+The modular structure allows individual components to be developed, maintained, and extended independently.
+
 ## Technology Stack
 
-The following technologies form part of the MAX software environment.
+The MAX software environment uses a combination of programming languages, frameworks, and development tools.
 
 | Category | Technology |
 |---|---|
@@ -179,13 +191,15 @@ The following technologies form part of the MAX software environment.
 | Hardware Communication | PySerial and Arduino |
 | Containerisation | Docker |
 
+Technology requirements may vary depending on the application configuration and enabled functionalities.
+
 ## Software Installation
 
-This section describes the general process for preparing the Python development environment.
+This section outlines the general process for preparing the Python development environment.
 
 ### 1. Install Required Packages
 
-Make sure Python and Git are installed:
+Verify that Python and Git are installed:
 
 ```bash
 python3 --version
@@ -194,18 +208,12 @@ git --version
 
 If Python is not installed, refer to the installation instructions for your selected operating system.
 
-### 2. Obtain the MAX Software Source Code
-
-Obtain the MAX application source repository from the project maintainers.
-
-The central MAX ecosystem repository provides project information and links to supporting repositories. It does not itself contain the complete application source code.
-
-### 3. Create a Python Virtual Environment
+### 2. Create a Python Virtual Environment
 
 Navigate to the application source directory:
 
 ```bash
-cd path/to/max-software
+cd path/to/application
 ```
 
 Create a virtual environment:
@@ -214,7 +222,7 @@ Create a virtual environment:
 python3 -m venv venv
 ```
 
-Activate it:
+Activate the environment:
 
 **Linux / Raspberry Pi / Jetson:**
 
@@ -222,35 +230,35 @@ Activate it:
 source venv/bin/activate
 ```
 
-### 4. Install Software Dependencies
+### 3. Install Software Dependencies
 
-If the application source repository provides a `requirements.txt` file, install its dependencies:
+If the application source repository provides a `requirements.txt` file, install the dependencies:
 
 ```bash
 pip install --upgrade pip
 pip install -r requirements.txt
 ```
 
-If dependencies are maintained through another package manager or installation file, follow the instructions provided by that repository.
+If the project uses another dependency management method, follow the instructions provided by its source repository.
 
-### 5. Install Additional System Dependencies
+### 4. Install Additional System Dependencies
 
-Some software components may require system-level packages, audio libraries, or hardware communication utilities.
+Some software components may require additional system packages, audio libraries, or hardware communication utilities.
 
-Install these according to the application requirements and the selected operating system.
+Install the required packages according to the application documentation and selected operating system.
 
 ## Software Configuration
 
-After installing the dependencies, configure the software components.
+After preparing the development environment, configure the software components according to the application requirements.
 
-The configuration process may include:
+Configuration may include:
 
 - Backend application settings.
-- Frontend configuration.
+- Frontend settings.
 - AI service credentials and API keys.
 - Speech recognition and speech generation settings.
 - WebSocket communication settings.
-- Serial communication settings for Arduino.
+- Serial communication settings.
 - Hardware and device configuration.
 
 ### Environment Variables
@@ -261,69 +269,79 @@ If the application provides an example environment file, create a working copy:
 cp .env.example .env
 ```
 
-Update the required configuration values in `.env` according to the application's documentation.
+Update the required values in `.env` according to the application's documentation.
 
-**Important:** Keep API keys, passwords, and other credentials private. Do not commit `.env` files or secret credentials to GitHub.
+**Important:** Keep API keys, passwords, and other credentials private. Never commit `.env` files or secret credentials to GitHub.
 
 ## Running the Application
 
-Once the dependencies and configuration are ready:
+After completing the installation and configuration:
 
 1. Activate the Python virtual environment.
 2. Verify that the required services and hardware connections are available.
-3. Follow the application repository's instructions to start the backend.
-4. Start the frontend using its documented procedure, if it runs separately.
+3. Start the backend using the documented application procedure.
+4. Start the frontend if it runs separately.
 5. Open the configured web interface.
-6. Verify communication between the application and the robot hardware.
+6. Verify communication between the application and robot hardware.
 
-The exact startup commands depend on the MAX application source repository and its configuration.
+Application-specific startup commands depend on the source code and configuration being used.
 
 ## Development Environment
 
-The development environment provides the tools and configuration needed to explore, modify, and extend the MAX software.
+The development environment provides the tools and configuration required to explore and modify the MAX software.
 
 It covers:
 
 - Development tool installation.
 - Source code management using Git.
-- Repository cloning and project setup.
+- Repository management.
 - Python environment and dependency management.
 - Backend and frontend development.
-- Application execution and testing.
-- Configuration and debugging.
+- Application testing and debugging.
+- Software configuration.
+
+Developers can use these tools to understand the existing implementation, troubleshoot issues, and contribute improvements.
 
 ## Customisation and Further Development
 
-MAX is designed as an extensible robotics platform that encourages developers, students, and researchers to explore, customise, improve, and expand its software capabilities.
+MAX is designed as an extensible robotics platform that encourages developers, students, and researchers to explore and expand its software capabilities.
 
-The software architecture provides opportunities to:
+The platform provides opportunities to:
 
 - Modify and extend existing software components.
 - Integrate additional AI models and services.
 - Develop new voice interaction capabilities.
 - Add support for additional languages.
-- Customise the web interface and user experience.
-- Integrate new libraries, tools, and software frameworks.
-- Develop additional robot functionalities.
+- Customise the user interface and interaction experience.
+- Integrate additional libraries and frameworks.
+- Develop new robot functionalities.
 - Extend communication and hardware integration.
 - Experiment with new software features and applications.
 
-Developers are encouraged to experiment with the existing implementation, introduce improvements, and contribute new capabilities to the MAX ecosystem.
+Developers are encouraged to explore the existing implementation, introduce improvements, and contribute new capabilities to the MAX ecosystem.
 
-The goal is to provide a flexible software foundation for learning, experimentation, customisation, and further robotics development.
+### MAX Intelligence – Application Source Code
+
+The MAX Intelligence repository contains the application software for the MAX Robot ecosystem.
+
+**Repository:** [MAX Intelligence – GitHub](https://github.com/menschrobotics/maxrobot_intelligence)
+
+Explore the repository to access the source code and learn more about the software implementation and its development.
 
 ## Troubleshooting
 
+The following table provides general checks for common setup and configuration issues.
+
 | Issue | Suggested Check |
 |---|---|
-| Raspberry Pi does not boot | Check the OS image, microSD card, and power supply |
-| SSH connection fails | Verify network connectivity, hostname, and SSH configuration |
-| Python package installation fails | Check Python version, virtual environment, and package compatibility |
-| Application does not start | Check dependencies, configuration files, and application logs |
-| Arduino is not detected | Check USB connection, serial device permissions, and port configuration |
-| API connection fails | Verify network connectivity and API credentials |
+| Raspberry Pi does not boot | Check the operating system image, microSD card, and power supply. |
+| SSH connection fails | Verify network connectivity, hostname, and SSH configuration. |
+| Python package installation fails | Check Python version, virtual environment, and package compatibility. |
+| Application does not start | Check dependencies, configuration files, and application logs. |
+| Arduino is not detected | Check the USB connection, serial port, and device permissions. |
+| API connection fails | Verify network connectivity and API credentials. |
 
-For unresolved issues, provide the operating system, computing platform, error message, and relevant logs when reporting a problem.
+When reporting an issue, include the computing platform, operating system, error message, and relevant logs to help identify the problem.
 
 ## Contributing
 
@@ -331,19 +349,19 @@ Contributions from the robotics and open-source community are welcome.
 
 You can contribute by:
 
-- Improving installation and configuration guides.
+- Improving installation and configuration documentation.
 - Developing new software functionalities.
 - Extending existing software components.
 - Integrating additional tools and technologies.
-- Improving documentation and examples.
+- Improving examples and documentation.
 - Reporting bugs and suggesting enhancements.
 
 ### Contribution Guidelines
 
-1. Explore the existing repository and documentation.
+1. Explore the repository and existing documentation.
 2. Identify an area for improvement or development.
 3. Create a separate branch for your changes.
-4. Make your modifications and test them.
+4. Implement and test your modifications.
 5. Document your changes clearly.
 6. Submit a pull request for review.
 
@@ -361,6 +379,6 @@ It is designed to encourage practical learning, experimentation, and innovation 
 
 **Developed by:** Mensch Robotics Private Limited
 
-**Website:** https://menschrobotics.com
+**Website:** [https://menschrobotics.com](https://menschrobotics.com/)
 
-**Main Ecosystem Repository:** https://github.com/menschrobotics/maxrobot
+**Main Ecosystem Repository:** [MAX Robot – GitHub](https://github.com/menschrobotics/maxrobot)
