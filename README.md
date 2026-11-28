@@ -369,7 +369,7 @@ All contributions should include clear descriptions and relevant technical infor
 
 ## License
 
-Licensing information will be announced once the project license has been finalised and approved by Mensch Robotics.
+This project is licensed under the **Apache License 2.0**.
 
 ## About MAX
 
